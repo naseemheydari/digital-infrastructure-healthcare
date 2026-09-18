@@ -6,9 +6,17 @@ This project explores the relationship between state-level digital infrastructur
 
 Using data from the CDC Behavioral Risk Factor Surveillance System (BRFSS) and the National Telecommunications and Information Administration (NTIA) Internet Use Survey, the analysis examines whether states with greater digital access and technology use also demonstrate different patterns of preventive healthcare engagement.
 
-The study focuses on 2019, 2021, and 2023 and evaluates relationships between measures of digital connectivity—including home internet use, broadband access, device use, email use, and video calling—and healthcare measures such as routine checkups, access to a personal healthcare provider, flu vaccination, exercise, and cholesterol screening.
+The study focuses on **2019, 2021, and 2023** and evaluates relationships between measures of digital connectivity—including home internet use, broadband access, device use, email use, and video calling—and healthcare measures such as routine checkups, access to a personal healthcare provider, flu vaccination, exercise, and cholesterol screening.
 
-Because the analysis is observational and conducted at the state level, the results identify associations rather than causal effects.
+Because the analysis is observational and conducted at the state level, the results identify **associations rather than causal effects**.
+
+---
+
+## Full Project Report
+
+For the complete methodology, analysis, visualizations, results, limitations, and discussion:
+
+**[View Full Project Report (PDF)](./Project_Report.pdf)**
 
 ---
 
@@ -16,7 +24,7 @@ Because the analysis is observational and conducted at the state level, the resu
 
 **Do states with better digital infrastructure show higher rates of preventive healthcare utilization and healthcare engagement?**
 
-The project also explores geographic patterns, changes over time, and potential differences in how individual dimensions of digital access relate to healthcare behaviors.
+The project also explores geographic patterns, changes over time, and differences in how individual dimensions of digital access relate to healthcare behaviors.
 
 ---
 
@@ -26,7 +34,7 @@ The project also explores geographic patterns, changes over time, and potential 
 
 BRFSS provides state-level survey data on health behaviors, preventive care, and healthcare access.
 
-The analysis used data from:
+The analysis used:
 
 - **2019:** 418,268 records × 342 variables
 - **2021:** 438,693 records × 303 variables
@@ -40,7 +48,7 @@ Healthcare measures examined included:
 - Physical activity
 - Cholesterol screening
 
-Official data source: [CDC BRFSS Annual Survey Data](https://www.cdc.gov/brfss/annual_data/annual_data.htm)
+Official source: [CDC BRFSS Annual Survey Data](https://www.cdc.gov/brfss/annual_data/annual_data.htm)
 
 ### NTIA Internet Use Survey
 
@@ -52,12 +60,12 @@ Digital infrastructure measures included:
 
 - Home internet use
 - Email use
-- Video/voice calling capability
+- Video/voice calling
 - PC or tablet use
 - Mobile phone use
 - Wired broadband access
 
-Official data source: [NTIA Internet Use Survey Datasets](https://www.ntia.gov/page/download-ntia-internet-use-survey-datasets)
+Official source: [NTIA Internet Use Survey Datasets](https://www.ntia.gov/page/download-ntia-internet-use-survey-datasets)
 
 ---
 
@@ -81,12 +89,7 @@ The NTIA dataset required reshaping because state observations were originally d
 
 ### Dataset Integration
 
-BRFSS identifies states using numeric FIPS codes, while NTIA uses state abbreviations.
-
-A state mapping was used to reconcile the identifiers, and the datasets were joined on:
-
-- State
-- Year
+BRFSS identifies states using numeric FIPS codes, while NTIA uses state abbreviations. A state mapping was used to reconcile the identifiers, and the datasets were joined by state and year.
 
 The resulting analytical dataset contained **146 state-year observations and 15 variables**, including healthcare and digital infrastructure measures.
 
@@ -98,21 +101,20 @@ The project used exploratory and statistical analysis to investigate relationshi
 
 Methods included:
 
-- Summary statistics
-- Distribution analysis
+- Summary statistics and distribution analysis
 - Outlier detection
 - Scatter plots
 - Pearson correlation analysis
 - Linear regression
 - High-vs.-low digital infrastructure comparisons
-- Geographic analysis
+- Geographic analysis using choropleth maps
 - Temporal analysis across 2019, 2021, and 2023
 
 ---
 
 ## Key Findings
 
-The analysis found that the relationship between digital infrastructure and healthcare engagement was not uniform across healthcare measures.
+The relationship between digital infrastructure and healthcare engagement was **not uniform across healthcare measures**.
 
 Some of the strongest observed correlations included:
 
@@ -121,75 +123,75 @@ Some of the strongest observed correlations included:
 - **Broadband access ↔ Exercise:** r = 0.580
 - **Video calling ↔ Personal doctor access:** r = -0.747
 
-Overall, digital infrastructure showed stronger positive relationships with some health behaviors, particularly exercise, while some measures showed negative relationships with traditional healthcare access.
+Digital infrastructure showed positive associations with some health behaviors, particularly exercise, while some digital measures were negatively associated with personal healthcare provider access.
 
-The geographic analysis also revealed regional variation in both digital infrastructure and healthcare engagement.
+Geographic analysis also revealed regional variation in both digital infrastructure and healthcare engagement.
 
-These findings should be interpreted as **associations rather than causal relationships**.
+These findings represent **state-level associations and should not be interpreted as evidence of causation**.
 
 ---
 
 ## Visualizations
 
-### Digital Infrastructure vs. Healthcare Engagement
+The project used multiple visualization techniques to communicate geographic patterns and statistical relationships, including:
 
-Scatter plots were used to examine direct relationships between digital infrastructure measures and healthcare outcomes. Overall, many relationships showed substantial variation across states, demonstrating that digital access alone does not fully explain healthcare engagement.
+- Choropleth maps
+- Correlation heatmaps
+- Scatter plots
+- Regression plots
+- Distribution plots
+- Temporal trend visualizations
 
-<!-- Visualization will be added here -->
-
-### Correlation & Regression Analysis
-
-Correlation and regression analyses were used to quantify relationships between selected digital infrastructure and healthcare measures.
-
-<!-- Visualization will be added here -->
-
-### Geographic Patterns
-
-Choropleth maps were developed to compare state-level digital infrastructure and preventive healthcare engagement across the United States.
-
-<!-- Visualization will be added here -->
+The complete visual analysis is available in the **[Full Project Report](./Project_Report.pdf)** and the analysis notebooks below.
 
 ---
 
-## Limitations
+## Project Notebooks
 
-Several limitations are important when interpreting the results:
+The analysis workflow is organized into three Jupyter notebooks:
 
-- The analysis is observational and cannot establish causation.
-- State-level aggregation can hide substantial within-state variation.
-- Demographic and socioeconomic variables were not included as controls in the final state-level models.
-- The 2019–2023 study period overlaps with the COVID-19 pandemic, which significantly disrupted healthcare utilization.
-- Simple linear regression may not capture nonlinear relationships or interactions between variables.
+1. **[Data Cleaning & Integration](./notebooks/01_data_cleaning.ipynb)**  
+   Loads and harmonizes BRFSS and NTIA data, handles missing values and survey weights, performs state-level aggregation, and integrates the datasets.
 
-Future work could incorporate individual-level microdata, demographic controls, county-level or urban/rural analysis, longer longitudinal periods, and direct measures of telehealth adoption.
+2. **[Exploratory Data Analysis](./notebooks/02_exploratory_analysis.ipynb)**  
+   Examines distributions, outliers, geographic patterns, scatter plots, and temporal trends across the study period.
 
----
-
-## Technologies & Methods
-
-**Programming:** Python, pandas, NumPy
-
-**Analysis:** Statistical Analysis, Pearson Correlation, Linear Regression, Hypothesis Testing, Survey Data Processing
-
-**Data:** Data Cleaning, Data Transformation, Data Integration, Survey-Weighted Aggregation
-
-**Visualization:** Choropleth Maps, Heatmaps, Scatter Plots, Geographic Visualization
+3. **[Correlation & Regression Analysis](./notebooks/03_correlation_regression_analysis.ipynb)**  
+   Performs Pearson correlation analysis, group comparisons, linear regression, correlation heatmaps, and geographic visualization.
 
 ---
 
-## My Contribution
+## Processed Data
 
-This project was completed collaboratively as part of **SIADS 593: Milestone I** in the University of Michigan Master of Applied Data Science program.
+The repository includes the state-level datasets produced during the data preparation pipeline:
 
-My primary contribution was developing the project's data visualizations, including **choropleth maps, heatmaps, and scatter plots**. I focused on transforming the analytical results into clear visual representations of geographic patterns and relationships between digital infrastructure and preventive healthcare engagement.
+- **[BRFSS State-Level Dataset](./data/processed/brfss_state_level.csv)**
+- **[Merged BRFSS + NTIA Dataset](./data/processed/merged_brfss_ntia.csv)**
 
-I also contributed to the development and communication of the final project report.
+Large raw BRFSS datasets are not stored in this repository. They can be obtained from the official CDC source linked above.
 
 ---
 
-## Project Context
+## Repository Structure
 
-- **Program:** Master of Applied Data Science
-- **Institution:** University of Michigan
-- **Course:** SIADS 593 – Milestone I
-- **Project Type:** Collaborative Data Science Project
+```text
+digital-infrastructure-healthcare/
+│
+├── data/
+│   └── processed/
+│       ├── brfss_state_level.csv
+│       └── merged_brfss_ntia.csv
+│
+├── notebooks/
+│   ├── 01_data_cleaning.ipynb
+│   ├── 02_exploratory_analysis.ipynb
+│   └── 03_correlation_regression_analysis.ipynb
+│
+├── src/
+│   ├── cleaning_utils.py
+│   ├── config.py
+│   └── data_utils.py
+│
+├── Project_Report.pdf
+├── requirements.txt
+└── README.md
